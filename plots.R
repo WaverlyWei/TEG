@@ -55,13 +55,13 @@ new_df = data.frame(new_df, stringsAsFactors = FALSE)
 
 p = ggplot(new_df,aes(factor(new_df$PredSet),new_df$AUC))  
 # theme(axis.text.y=element_blank()) # hide y axis
-p = p + geom_errorbar(aes(ymin = new_df$CI_low,ymax = new_df$CI_high,colour = factor(outcome),width = 0.15))+
+p = p + geom_crossbar(aes(ymin = new_df$CI_low,ymax = new_df$CI_high,colour = factor(outcome),width = 0.15))+
   ylab("AUC")+xlab("PredSet")+ggtitle("AUC of All PredSets")+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                                                                   panel.background = element_blank(), axis.line = element_line(colour = "black"))
 p = p + geom_hline(yintercept = 0.5, colour = "red") + ylim(0,1) + theme(axis.text.x = element_text(face="bold", size=8, angle=45))
 p = p + theme(plot.title = element_text(hjust = 0.5)) 
 
-
+p
 
 
 
@@ -78,3 +78,4 @@ h = ggplot(new_df, aes(PredSet, Outcome)) +
         axis.title=element_text(size=14,face="bold"),
         axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(fill = "AUC")
+h
